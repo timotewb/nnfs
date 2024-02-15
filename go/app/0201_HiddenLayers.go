@@ -56,26 +56,46 @@ func HiddenLayers() {
 
 	var n int
 	var w int
-	var i int
+	var b int
+	var h int
+	var v float32
 	// for each batch (array in inputs) run through model and save
-	for b := 0; b < len(inputs); b++ {
+	for b = 0; b < len(inputs); b++ {
 		fmt.Println("\nBatch:", inputs[b])
+		//----------------------------------------------------------------------------------------
 		// input layer
+		//----------------------------------------------------------------------------------------
+		layerOutput := make([]float32, len(layers.InputLayer.Weights))
+		// for each neuron
 		for n = 0; n < len(layers.InputLayer.Weights); n++ {
 			fmt.Printf("Neuron: %d\n", n)
-			// for each neuron
+			// for each weight/input pair
+			v = 0
 			for w = 0; w < len(layers.InputLayer.Weights[n]); w++ {
-				fmt.Printf("Weight: %d\n", w)
-				// for each weight
-				for i = 0; i < len(inputs[b]); i++ {
-					fmt.Printf("Input: %f\n", inputs[b][i])
+				v = v + (inputs[b][n] * layers.InputLayer.Weights[n][w])
+			}
+			layerOutput[n] = v
+		}
+
+		//----------------------------------------------------------------------------------------
+		// hidden layers
+		//----------------------------------------------------------------------------------------
+		for h = 0; h < len(layers.HiddenLayers); h++ {
+			inputs := layerOutput
+			layerOutput := make([]float32, len(layers.HiddenLayers))
+			// for each neuron
+			for n = 0; n < len(layers.HiddenLayers[h].Weights); n++ {
+				v = 0
+				for w = 0; w < len(layers.HiddenLayers[h].Weights[n]); w++ {
+					v = v + (inputs[w] * layers.HiddenLayers[h].Weights[n][w])
 				}
+				layerOutput[n] = v
 			}
 		}
 
-		// hidden layers
-
+		//----------------------------------------------------------------------------------------
 		// output layer
+		//----------------------------------------------------------------------------------------
 	}
 
 	// we run one row of input through the entire model and save to array, then run next input
