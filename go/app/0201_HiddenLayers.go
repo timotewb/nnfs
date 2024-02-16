@@ -68,7 +68,6 @@ func HiddenLayers() {
 		layerOutput := make([]float32, len(layers.InputLayer.Weights))
 		// for each neuron
 		for n = 0; n < len(layers.InputLayer.Weights); n++ {
-			fmt.Printf("Neuron: %d\n", n)
 			// for each weight/input pair
 			v = 0
 			for w = 0; w < len(layers.InputLayer.Weights[n]); w++ {
@@ -96,6 +95,15 @@ func HiddenLayers() {
 		//----------------------------------------------------------------------------------------
 		// output layer
 		//----------------------------------------------------------------------------------------
+		batchOutput := make([]float32, len(layers.OutputLayer.Weights))
+		for n = 0; n < len(layers.OutputLayer.Weights); n++ {
+			v = 0
+			for w = 0; w < len(layers.OutputLayer.Weights[n]); w++ {
+				v = v + (layerOutput[w] * layers.OutputLayer.Weights[n][w])
+			}
+			batchOutput[n] = v
+		}
+		fmt.Println(layerOutput)
 	}
 
 	// we run one row of input through the entire model and save to array, then run next input
