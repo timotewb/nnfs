@@ -5,10 +5,13 @@ import (
 	a "nnfs/app"
 )
 
-func main(){
+func main() {
 	fmt.Println("main()")
 	a.ASingleNeuron()
+	a.ASingleNeuronNumpy()
 	a.ALayerOfNeurons()
+	a.ALayerOfNeuronsNumpy()
 	a.BatchInputs()
 	a.HiddenLayers()
+	a.HiddenLayers_v2()
 }

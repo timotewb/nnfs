@@ -10,6 +10,7 @@ require (
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/lib/pq v1.10.9 // indirect
+	github.com/timotewb/gonn v0.0.5 // indirect
 	github.com/traefik/yaegi v0.15.1 // indirect
 	gitlab.com/ethan.reesor/vscode-notebooks/go-kernel v0.2.0 // indirect
 	gitlab.com/ethan.reesor/vscode-notebooks/lib v0.0.0-20210919032634-c490e0145cf7 // indirect
